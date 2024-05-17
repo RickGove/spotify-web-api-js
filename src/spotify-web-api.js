@@ -1673,6 +1673,23 @@ var SpotifyWebApi = (function () {
     return _checkParamsAndPerformRequest(requestData, options, callback);
   };
 
+   /**
+   * Get the object currently being played on the user’s Spotify account, and the currently queued items.
+   * See [Get the User's Queue](https://developer.spotify.com/documentation/web-api/reference/get-queue) on
+   * the Spotify Developer site for more information about the endpoint.
+   *
+   * @param {Object} options A JSON object with options that can be passed.
+   * @param {function(Object,Object)} callback An optional callback that receives 2 parameters. The first
+   * one is the error object (null if no error), and the second is the value if the request succeeded.
+   * @return {Object} Null if a callback is provided, a `Promise` object otherwise
+   */
+  Constr.prototype.getMyCurrentQueue = function (options, callback) {
+    var requestData = {
+      url: _baseUri + '/me/player/queue'
+    };
+    return _checkParamsAndPerformRequest(requestData, options, callback);
+  };
+
   /**
    * Pause playback on the user’s account.
    * See [Pause a User’s Playback](https://developer.spotify.com/web-api/pause-a-users-playback/) on

@@ -1648,6 +1648,21 @@ describe('Basic tests', function () {
       expect(that.requests[0].url).toBe('https://api.spotify.com/v1/me/player');
     });
 
+    it('should get current playback and queue', function () {
+      var callback = sinon.spy();
+      var api = new SpotifyWebApi();
+      api.getMyCurrentQueue(callback);
+      that.requests[0].respond(
+        200,
+        { 'Content-Type': 'application/json' },
+        JSON.stringify(fixtures.current_playback)
+      );
+      expect(that.requests[0].method).toBe('GET');
+      expect(callback.calledWith(null, fixtures.current_queue)).toBeTruthy();
+      expect(that.requests.length).toBe(1);
+      expect(that.requests[0].url).toBe('https://api.spotify.com/v1/me/queue');
+    });
+
     it('should get current playing track', function () {
       var callback = sinon.spy();
       var api = new SpotifyWebApi();
