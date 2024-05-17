@@ -4,7 +4,7 @@
 /**
  * Class representing the API
  */
-var SpotifyWebApi = (function () {
+var SpotifyWebApiAdvanced = (function () {
   var _baseUri = 'https://api.spotify.com/v1';
   var _accessToken = null;
   var _promiseImplementation = null;
@@ -176,7 +176,7 @@ var SpotifyWebApi = (function () {
   var Constr = function () {};
 
   Constr.prototype = {
-    constructor: SpotifyWebApi
+    constructor: SpotifyWebApiAdvanced
   };
 
   /**
@@ -1574,6 +1574,13 @@ var SpotifyWebApi = (function () {
     return _checkParamsAndPerformRequest(requestData, options, callback);
   };
 
+  Constr.prototype.getMyCurrentQueue = function (options, callback) {
+    var requestData = {
+      url: _baseUri + '/me/player/queue'
+    };
+    return _checkParamsAndPerformRequest(requestData, options, callback);
+  };
+
   /**
    * Get the object currently being played on the user’s Spotify account.
    * See [Get the User’s Currently Playing Track](https://developer.spotify.com/web-api/get-the-users-currently-playing-track/) on
@@ -2084,5 +2091,5 @@ var SpotifyWebApi = (function () {
 })();
 
 if (typeof module === 'object' && typeof module.exports === 'object') {
-  module.exports = SpotifyWebApi;
+  module.exports = SpotifyWebApiAdvanced;
 }
